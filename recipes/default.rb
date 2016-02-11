@@ -21,7 +21,10 @@
 chef_gem 'acme-client' do
   action :install
   version '0.2.4'
-  compile_time true
+  
+  if Chef::Resource::ChefGem.instance_methods(false).include?(:compile_time)
+    compile_time true
+  end
 end
 
 require 'acme-client'
